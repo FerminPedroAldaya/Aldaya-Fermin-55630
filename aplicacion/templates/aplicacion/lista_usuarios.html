@@ -1,0 +1,81 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Usuarios Filtrados</span></h1>
+    </div>                              
+{% endblock titulo %}
+
+{% block filtro %}
+
+{% endblock filtro %}
+
+{% block informacion %}
+<style>
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    
+    .custom-table th,
+    .custom-table td {
+        padding: 10px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .custom-table th:first-child,
+    .custom-table td:first-child {
+        border-left: none;
+    }
+    
+    .custom-table th:last-child,
+    .custom-table td:last-child {
+        border-right: none;
+    }
+    .acciones-column {
+        width: 200px; /* Ancho fijo para la columna de acciones */
+    }
+</style>
+
+<section class="py-5">     
+    <section class="py-5"> 
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-4 col-xl-12">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Username</th>
+                            <th class="text-center">Apellido</th>
+                            <th class="acciones-column">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for u in usuarios %}
+
+                            
+                                <tr>
+                                    <td class="text-center">{{ u.username }}</td>
+                                    <td class="text-center">{{ u.last_name }}</td>
+                                    <td >
+                                        <a href="{% url 'detalle_usuario' u.id %}" class="btn btn-primary">
+                                            <i class="bi bi-plus-lg"></i>
+                                            </a>
+                                    </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+        
+{% endblock informacion %}
+
+
+{% block final %}
+
+    <a href="{% url 'trabajoForm' %}"  class = "btn btn-primary btn-lg opacity-95 mx-auto p-2" style="width: 200px;">Generar nuevo empleo</a>
+    
+{% endblock final %}

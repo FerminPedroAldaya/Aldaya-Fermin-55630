@@ -1,0 +1,95 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Lista de Empleadores</span></h1>
+    </div>                              
+{% endblock titulo %}
+
+{% block filtro %}
+<form action="{% url 'lista_empleadores' %}" method="GET" class="text-center">
+    <input type="text" name="nombre" placeholder="Buscar por nombre" class="mx-auto p-2" style="width: 490px;">
+    <button type="submit" class="btn btn-primary btn-lg mx-auto p-2" style="width: 100px;">Buscar</button>
+</form>
+{% endblock filtro %}
+<!-- LAS LISTAS SE RELLENAN A TRAVES DE UN CICLO FOR DONDE IMPRIME LOS DATOS DESEADOS DE OBJETO-->
+{% block informacion %}
+<style>
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    
+    .custom-table th,
+    .custom-table td {
+        padding: 10px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .custom-table th:first-child,
+    .custom-table td:first-child {
+        border-left: none;
+    }
+    
+    .custom-table th:last-child,
+    .custom-table td:last-child {
+        border-right: none;
+    }
+    .acciones-column {
+        width: 200px; /* Ancho fijo para la columna de acciones */
+    }
+</style>
+
+
+<section class="py-5">     
+    <section class="py-5"> 
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-4 col-xl-12">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th >Apellido</th>
+                            <th >Empresa</th>
+                            <th class="acciones-column">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in empleadores %}
+
+                                <tr>
+                                    <td >{{ e.nombre }}</td>
+                                    <td >{{ e.apellido }}</td>
+                                    <td >{{ e.nombreEmpresa }}</td>
+                                    <td >
+                                        <a href="{% url 'detalle_empleador' e.id %}" class="btn btn-primary">
+                                            <i class="bi bi-plus-lg"></i>
+                                        {% if user.is_authenticated and user.id == e.user_id %}
+                                            </a>
+                                            <a href="{% url 'updateEmpleador' e.id %}" class="btn btn-primary">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </a>
+                                            <a href="{% url 'deleteEmpleador' e.id %}" class="btn btn-primary">
+                                                <i class="bi bi-trash3-fill"></i>                                        
+                                            </a>
+                                            
+                                        {% endif %}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock informacion %}
+
+
+{% block final %}
+
+    <a href="{% url 'empleadorForm' %}"  class = "btn btn-primary btn-lg opacity-95 mx-auto p-2" style="width: 200px;">Generar nuevo Empleador</a>
+    
+{% endblock final %}

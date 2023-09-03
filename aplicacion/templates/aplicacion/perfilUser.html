@@ -1,0 +1,193 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">{{usuario.username}}</span></h1>
+</div>
+
+<div class="card shadow border-0 rounded-4 mb-5">
+    <div class="card-body p-5">
+        <div class="row align-items-center gx-5">
+            <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                <div class="bg-light p-4 rounded-4">
+                    <div>
+                        <img src="{{avatar}}" height="40px"  weight="40px"/>
+                    </div>
+                    <div class="text-primary fw-bolder mb-2">{{usuario.first_name}}</div>
+                    <div class="text-primary fw-bolder mb-1">{{usuario.last_name}}</div>
+                    <div class="small fw-bolder">{{usuario.email}}</div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div>
+                    {% for i in informacion %}
+                        {% if usuario.id == i.user_id %}
+                            <p>{{i.informacion}}</p>
+                        {% endif %}
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-4">
+                {% if user.is_authenticated %}
+                    <div class="text-end">
+                        <a href="{% url 'contactar_usuario' destinatario_id=usuario.id %}" class="btn btn-sm btn-primary">
+                            <i>Contactar</i>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock titulo %}
+
+{% block informacion %}
+
+
+<style>
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    
+    .custom-table th,
+    .custom-table td {
+        padding: 10px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .custom-table th:first-child,
+    .custom-table td:first-child {
+        border-left: none;
+    }
+    
+    .custom-table th:last-child,
+    .custom-table td:last-child {
+        border-right: none;
+    }
+    .acciones-column {
+        width: 200px; /* Ancho fijo para la columna de acciones */
+    }
+</style>
+
+<h2 class="text-primary fw-bolder mb-0">Tarjeta de Empleador</h2>
+<section class="py-5">     
+    <section class="py-5"> 
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-4 col-xl-12">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th >Apellido</th>
+                            <th >Empresa</th>
+                            <th class="acciones-column">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in empleador %}
+
+                            {% if user.is_authenticated and usuario.id == e.user_id %}
+                                <tr>
+                                    <td >{{ e.nombre }}</td>
+                                    <td >{{ e.apellido }}</td>
+                                    <td >{{ e.nombreEmpresa }}</td>
+                                    <td >
+                                        <a href="{% url 'detalle_empleador' e.id %}" class="btn btn-primary">
+                                            <i class="bi bi-plus-lg"></i>
+                                            </a>
+                            {% endif %}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="text-primary fw-bolder mb-0">Tus Curriculums</h2>
+    <section class="py-5">     
+        <section class="py-5"> 
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-4 col-xl-12">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Apellido</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="acciones-column">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in empleado %}
+    
+                                {% if user.is_authenticated and usuario.id == e.user_id %}
+                                    <tr>
+                                        <td class="text-center">{{ e.apellido }}</td>
+                                        <td class="text-center">{{ e.nombre }}</td>
+                                        <td >
+                                            <a href="{% url 'detalle_empleado' e.id %}" class="btn btn-primary">
+                                                <i class="bi bi-plus-lg"></i>
+                                {% endif %}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="text-primary fw-bolder mb-0">Empleos</h2>
+        <section class="py-5">     
+            <section class="py-5"> 
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-4 col-xl-12">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Cargo</th>
+                                    <th class="text-center">Ubicacion</th>
+                                    <th class="acciones-column">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for t in trabajo %}
+        
+                                    {% if user.is_authenticated and usuario.id == t.user_id %}
+                                        <tr>
+                                            <td class="text-center">{{ t.cargo }}</td>
+                                            <td class="text-center">{{ t.ubicacion }}</td>
+                                            <td >
+                                                <a href="{% url 'detalle_empleo' t.id %}" class="btn btn-primary">
+                                                    <i class="bi bi-plus-lg"></i>
+                                                {% if user.is_authenticated and user.id == t.user_id %}
+                                                    </a>
+                                                    <a href="{% url 'updateEmpleo' t.id %}" class="btn btn-primary">
+                                                        <i class="bi bi-pencil-fill"></i>
+                                                    </a>
+                                                    <a href="{% url 'deleteEmpleo' t.id %}" class="btn btn-primary">
+                                                        <i class="bi bi-trash3-fill"></i>                                        
+                                                    </a>
+                                                    
+                                                {% endif %}
+                                    {% endif %}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+{% endblock informacion %}

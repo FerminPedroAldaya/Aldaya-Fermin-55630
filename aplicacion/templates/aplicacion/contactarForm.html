@@ -1,0 +1,26 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Mensaje a {{destinatario.username}}</span></h1>
+    </div>                              
+{% endblock titulo %}
+
+{% block informacion %}
+    <form action="" method="POST">
+        
+            {% csrf_token %}
+        
+            <p>El mensaje se enviara a {{destinatario.email}}</p>
+            {{form.as_p}}              
+            
+        
+
+   
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Enviar</button>
+        </div>
+    </form>      
+       
+         
+{% endblock informacion %}

@@ -1,0 +1,42 @@
+{% extends 'aplicacion/base.html' %}
+<!-- SE RELLENAN LOS BLOQUES CON LO QUE SE QUIERE MOSTRAR-->
+{% block titulo %}
+
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline"> Bienvenidos a TrabajoYa</span></h1>
+    </div>     
+    
+{% endblock titulo %}
+
+{% block informacion %}
+
+    <div class="text-center">
+        <div class="fs-3 fw-light text-muted">El sitio ideal para buscar tu primer empleo</div>
+        <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Comience Ya mismo en su busqueda</span></h1>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3"></div>
+    </div>
+                
+{% endblock informacion %}
+
+{% block final %}
+    <section class="bg-light py-5">
+        <div class="container px-5">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-xxl-8">
+                    <div class="text-center my-5">
+                        <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">Trabajo Ya</span></h2>
+                        <p class="lead fw-light mb-4">Ofrecemos una gran comunidad en busca de empleo y trabajadores</p>
+                        <p class="text-muted">El sitio web numero 1 en todo el mundo para buscar o publicar tu empleo</p>
+                        <div class="d-flex justify-content-center fs-2 gap-4">
+                            <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
+                            <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
+                            <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+    
+{% endblock final %}

@@ -1,0 +1,37 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">{{empleador.apellido}} &#160{{empleador.nombre}}</span></h1>
+    </div>                              
+{% endblock titulo %}
+
+{% block informacion %}
+{% if empleador %}
+<div class="card shadow border-0 rounded-4 mb-5">
+    <div class="card-body p-5">
+        <div class="row align-items-center gx-6">
+            <div class="col-lg-4 mb-4 mb-lg-0"> 
+                <div class="bg-light p-6 rounded-4">
+                    <div class="text-primary fw-bolder mb-2">{{empleador.profesion}}</div>
+                    <div class="small fw-bolder">{{empleador.nombreEmpresa}}</div>
+                    <div class="small fw-bolder">{{empleador.mail}}</div>
+                    <div class="small text-muted">Edad: {{empleador.edad}}</div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div>{{empleador.presentacion}}</div>
+            </div>
+            <div class="text-center" >
+                    
+                <a href="{% url 'contactar_usuario' destinatario_id=empleador.user_id %}" class="btn btn-sm btn-primary"style="width: 100px; height:35px;">
+                    <div class="text-center fs-6"><p>Contactar</p></div>
+                </a>
+            </div> 
+        </div>
+    </div>
+</div>
+{% else %}
+    <p>No se ha encontrado a nadie con ese nombre.</p>
+{% endif %}
+{% endblock informacion %}

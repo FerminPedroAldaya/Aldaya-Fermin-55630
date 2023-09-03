@@ -1,0 +1,29 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0">Buscar Usuarios</h1>
+    </div>     
+{% endblock titulo %}
+
+{% block informacion %}
+    <form method="get">
+        <input type="text" name="q" placeholder="Buscar usuarios" />
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div>
+        {% if usuarios %}
+            <h2>Resultados de la Búsqueda</h2>
+            <ul>
+                {% for usuario in usuarios %}
+                    <li>
+                        <a href="{% url 'ver_perfil' username=usuario.username %}">{{ usuario.username }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron resultados.</p>
+        {% endif %}
+    </div>
+{% endblock informacion %}

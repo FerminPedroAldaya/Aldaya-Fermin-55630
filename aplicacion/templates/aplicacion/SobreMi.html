@@ -1,0 +1,40 @@
+
+{% extends 'aplicacion/base.html' %}
+{% load static %}
+{% block titulo %}
+
+<div class="text-center mb-5">
+    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Sobre Mi</span></h1>
+</div>
+
+
+{% endblock titulo %}
+
+{% block informacion %}
+<div class="card shadow border-0 rounded-4 mb-5">
+    <div class="card-body p-5">
+        <div class="row align-items-center gx-5">
+            <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                <div class="bg-light p-4 rounded-4"> 
+                    <div>
+                        <img src="{% static 'aplicacion/assets/yo.png' %}" style="width: 150px; height:300;">
+                    </div>
+                    <div class="text-primary fw-bolder mb-2">Fermin</div>
+                    <div class="text-primary fw-bolder mb-1">Aldaya</div>
+                    <div class="small fw-bolder">Comisión 55630</div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div>
+                    <p>Mi nombre es Fermin Aldaya tengo 25 años y este 2023 arranque la carrera 'Analista Programador Universinario' en la UNLP, pero por motivos mayores tuve que abandonar momentaneamente.
+                        Por lo que decidí iniciar este curso para aprender un poco mas antes de retomar la carrera y pretendiendo tambien incertarme en el mundo laboral, aunque ya terminando
+                        el curso me doy cuenta que preciso mucha mas practica y mas conocimiento... Asique a darle duro y seguir aprendiendo!!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+    </div>
+</div>
+
+{% endblock informacion %}

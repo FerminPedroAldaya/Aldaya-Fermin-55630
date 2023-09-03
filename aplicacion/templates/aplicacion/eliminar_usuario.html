@@ -1,0 +1,33 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Eliminar Usuario</span></h1>
+    </div>     
+
+{% endblock titulo %}
+
+{% block informacion %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+</head>
+<body>
+    <h2 class="text-primary fw-bolder mb-0">Confirmar Eliminacion</h2>
+    <div class="fs-3 fw-light text-muted">¿Estás seguro de que deseas eliminar tu cuenta?</div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Confirmar</button>
+        </div>
+    </form>
+</body>
+</html>
+
+
+{% endblock informacion %}

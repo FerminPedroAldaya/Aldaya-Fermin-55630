@@ -1,0 +1,24 @@
+{% extends 'aplicacion/base.html' %}
+
+{% block titulo %}
+
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Agregar Informacion</span></h1>
+    </div>     
+
+{% endblock titulo %}
+
+{% block informacion %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        
+        {% csrf_token %}
+        <table>           
+        {{form.as_p}}
+        </table>   
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Agregar Informacion</button>
+        </div>
+    </form>      
+
+{% endblock informacion %}
